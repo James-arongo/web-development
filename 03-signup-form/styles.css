@@ -1,71 +1,83 @@
 body {
-    font-family: sans-serif; /* Clean, easy-to-read font */
-    background-color: #f8f8f8; /* Light background color */
-    margin: 0; /* Remove default body margins */
+    font-family: sans-serif;
+    background-color: #f8f8f8;
+    margin: 0;
+    padding: 0 20px; /* Added left and right padding */
     display: flex;
-    justify-content: center; /* Horizontally center the container */
-    align-items: center; /* Vertically center the container */
-    min-height: 100vh; /* Ensure full viewport height for centering */
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
 }
 
-.signup-container { /* Styles for the main signup form container */
-    background-color: #fff; /* White background for the form */
-    padding: 30px; /* Add some padding around the form content */
-    border-radius: 8px; /* Slightly rounded corners */
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); /* Add a subtle shadow */
-    width: 400px; /* Set a maximum width for the form */
+.signup-container {
+    background-color: #fff;
+    padding: 30px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    width: 400px;
 }
 
-.offer-header { /* Styles for the heading and offer text */
-    text-align: center; /* Center the text */
-    margin-bottom: 20px; /* Add space below */
+.featured-image { /* Styles for the puppy image */
+    width: 120px; /* Small width */
+    border-radius: 50%; /* Rounded corners */
+    display: block; /* Center the image */
+    margin: 10px auto 20px; /* Spacing around the image */
+    box-shadow: 0 0 5px rgba(0,0,0, 0.3); /* Shadow behind the image */
+    border: 3px solid #471869; /* Purple border */
 }
 
-.offer-header h1 { /* Styles for the main heading */
-    color: #471869; /* Purple heading color */
-    font-size: 2em; /* Larger font size */
-    margin-bottom: 10px; /* Space below the heading */
-}
 
-.offer-header p { /* Styles for the offer text */
-    font-size: 1.2em; /* Slightly larger font */
-    color: #471869; /* Purple color */
-}
-
-.form-description { /* Styles for the product description */
+.offer-header {
     text-align: center;
+    margin-bottom: 20px;
+}
+
+.offer-header h1 {
+    color: #471869;
+    font-size: 2em;
+    margin-bottom: 10px;
+}
+
+.offer-header p {
+    font-size: 1.2em;
+    color: #471869;
+}
+
+.form-description {
+    text-align: left; /* Left-align the description paragraph */
     margin-bottom: 25px;
 }
 
-.input-group { /* Styles for grouping label and input */
-    margin-bottom: 20px; /* Space between input groups */
+.input-group {
+    margin-bottom: 20px;
 }
 
-label { /* Styles for the labels */
-    display: block; /* Make labels stack above inputs */
-    margin-bottom: 5px; /* Space below labels */
+label {
+    display: block;
+    margin-bottom: 5px;
 }
 
-input[type="email"] { /* Styles for the email input */
-    width: calc(100% - 12px); /* Full width minus padding and border */
-    padding: 10px; /* Padding inside the input */
-    border: 1px solid #ccc; /* Light gray border */
-    border-radius: 4px; /* Slightly rounded corners */
-    box-sizing: border-box; /* Include padding and border in width calculation */
+input[type="text"], /* Style for the new name input */
+input[type="email"] {
+    width: calc(100% - 12px);
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
 }
 
-.signup-button { /* Styles for the signup button */
-    background-color: #471869; /* Purple button color */
-    color: #fff; /* White text color */
-    padding: 12px 20px; /* Button padding */
-    border: none; /* Remove default button border */
-    border-radius: 4px; /* Rounded corners */
-    cursor: pointer; /* Make it clickable */
-    width: 100%; /* Full width button */
-    font-size: 1em; /* Button font size */
-    transition: background-color 0.3s ease; /* Smooth hover effect */
+.signup-button {
+    background-color: #471869;
+    color: #fff;
+    padding: 12px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    width: 100%;
+    font-size: 1em;
+    transition: background-color 0.3s ease;
 }
 
-.signup-button:hover { /* Styles for button hover effect */
-    background-color: #33124f; /* Slightly darker purple on hover */
+.signup-button:hover {
+    background-color: #33124f;
 }
