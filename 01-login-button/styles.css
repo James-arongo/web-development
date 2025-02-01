@@ -1,0 +1,36 @@
+body {
+    font-family: sans-serif;
+    display: flex; /* Enable flexbox for the body */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
+    min-height: 100vh; /* Ensure the body takes up full viewport height */
+    margin: 0; /* Remove default body margins */
+  }
+  
+  .container {
+    display: flex;
+    justify-content: center;
+  }
+  
+  .login-button {
+    /* Button styles remain the same */
+    background-color: #fff;
+    color: #4285f4;
+    border: 1px solid #dadce0;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 500;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+  }
+  
+  .login-button:hover {
+    background-color: #f8f9fa;
+    border-color: #dadce0;
+  }
+  
+  .login-button:focus {
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(66, 133, 244, 0.3);
+  }
