@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mood Recipes</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body class="bg-gray-100 min-h-screen">
+    <div class="container mx-auto px-4 py-8">
+        <h1 class="text-4xl font-bold text-center mb-8">Mood Recipes</h1>
+        
+        <div class="max-w-md mx-auto bg-white rounded-lg shadow-lg p-6">
+            <h2 class="text-xl mb-4">How are you feeling today?</h2>
+            <div class="grid grid-cols-2 gap-4 mb-6">
+                <button class="mood-btn bg-blue-500 hover:bg-blue-600 text-white py-2 px-4 rounded" data-mood="happy">Happy</button>
+                <button class="mood-btn bg-gray-500 hover:bg-gray-600 text-white py-2 px-4 rounded" data-mood="sad">Sad</button>
+                <button class="mood-btn bg-red-500 hover:bg-red-600 text-white py-2 px-4 rounded" data-mood="stressed">Stressed</button>
+                <button class="mood-btn bg-yellow-500 hover:bg-yellow-600 text-white py-2 px-4 rounded" data-mood="tired">Tired</button>
+            </div>
+
+            <div id="recipe-display" class="hidden">
+                <h3 id="recipe-name" class="text-2xl font-bold mb-4"></h3>
+                
+                <div class="grid grid-cols-3 gap-4 mb-6 text-sm">
+                    <div class="text-center p-2 bg-gray-50 rounded">
+                        <div class="font-bold">Prep Time</div>
+                        <div id="recipe-prep-time"></div>
+                    </div>
+                    <div class="text-center p-2 bg-gray-50 rounded">
+                        <div class="font-bold">Cook Time</div>
+                        <div id="recipe-cook-time"></div>
+                    </div>
+                    <div class="text-center p-2 bg-gray-50 rounded">
+                        <div class="font-bold">Difficulty</div>
+                        <div id="recipe-difficulty"></div>
+                    </div>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold text-lg">Ingredients:</h4>
+                    <p id="recipe-ingredients" class="mt-2 whitespace-pre-line"></p>
+                </div>
+                
+                <div class="mb-6">
+                    <h4 class="font-bold text-lg">Instructions:</h4>
+                    <p id="recipe-instructions" class="mt-2 whitespace-pre-line"></p>
+                </div>
+
+                <div class="mb-6">
+                    <h4 class="font-bold text-lg">Tips:</h4>
+                    <p id="recipe-tips" class="mt-2"></p>
+                </div>
+
+                <div class="mb-6">
+                    <h4 class="font-bold text-lg">Serves:</h4>
+                    <p id="recipe-servings" class="mt-2"></p>
+                </div>
+
+                <button id="new-recipe" class="bg-green-500 hover:bg-green-600 text-white py-2 px-4 rounded w-full">
+                    Get Another Recipe
+                </button>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

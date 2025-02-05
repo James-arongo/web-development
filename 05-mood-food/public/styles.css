@@ -1,0 +1,11 @@
+.mood-btn {
+    transition: transform 0.2s;
+}
+
+.mood-btn:hover {
+    transform: scale(1.05);
+}
+
+#recipe-display {
+    transition: opacity 0.3s;
+} 
