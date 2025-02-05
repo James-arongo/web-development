@@ -3,35 +3,8 @@ import { Coffee } from 'lucide-react';
 import { SearchBar } from './components/SearchBar';
 import { CoffeeShopCard } from './components/CoffeeShopCard';
 import { calculateScore } from './utils/rankingAlgorithm';
-import type { CoffeeShop, SearchState } from './types';
-
-// Simulated data - in a real app, this would come from Google Maps API
-const MOCK_COFFEE_SHOPS: CoffeeShop[] = [
-  {
-    id: '1',
-    name: 'Ritual Coffee Roasters',
-    rating: 4.7,
-    reviewCount: 1200,
-    address: '1026 Valencia St, San Francisco, CA 94110',
-    image: 'https://images.unsplash.com/photo-1501339847302-ac426a4a7cbb?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
-  },
-  {
-    id: '2',
-    name: 'Blue Bottle Coffee',
-    rating: 4.8,
-    reviewCount: 800,
-    address: '66 Mint Plaza, San Francisco, CA 94103',
-    image: 'https://images.unsplash.com/photo-1495474472287-4d71bcdd2085?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
-  },
-  {
-    id: '3',
-    name: 'Sightglass Coffee',
-    rating: 4.6,
-    reviewCount: 950,
-    address: '270 7th St, San Francisco, CA 94103',
-    image: 'https://images.unsplash.com/photo-1442512595331-e89e73853f31?ixlib=rb-1.2.1&auto=format&fit=crop&w=1000&q=80'
-  }
-];
+import { geocodeLocation, fetchCoffeeShops, convertToShop } from './utils/openStreetMapService';
+import type { SearchState } from './types';
 
 function App() {
   const [searchState, setSearchState] = useState<SearchState>({
@@ -41,23 +14,39 @@ function App() {
   });
 
   const handleSearch = async () => {
-    setSearchState(prev => ({ ...prev, isLoading: true }));
+    if (!searchState.location.trim()) return;
     
-    // Simulate API call delay
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    setSearchState(prev => ({ ...prev, isLoading: true, error: undefined }));
     
-    // Sort coffee shops by our ranking algorithm
-    const sortedShops = [...MOCK_COFFEE_SHOPS].sort((a, b) => {
-      const scoreA = calculateScore(a.rating, a.reviewCount);
-      const scoreB = calculateScore(b.rating, b.reviewCount);
-      return scoreB - scoreA;
-    });
+    try {
+      // First, geocode the location to get coordinates
+      const { lat, lon } = await geocodeLocation(searchState.location);
+      
+      // Then fetch coffee shops near those coordinates
+      const rawShops = await fetchCoffeeShops(lat, lon);
+      
+      // Convert the raw data to our format and sort by score
+      const shops = rawShops
+        .map(convertToShop)
+        .sort((a, b) => {
+          const scoreA = calculateScore(a.rating, a.reviewCount);
+          const scoreB = calculateScore(b.rating, b.reviewCount);
+          return scoreB - scoreA;
+        });
 
-    setSearchState(prev => ({
-      ...prev,
-      isLoading: false,
-      results: sortedShops
-    }));
+      setSearchState(prev => ({
+        ...prev,
+        isLoading: false,
+        results: shops
+      }));
+    } catch (error) {
+      setSearchState(prev => ({
+        ...prev,
+        isLoading: false,
+        error: error instanceof Error ? error.message : 'An error occurred',
+        results: []
+      }));
+    }
   };
 
   return (
@@ -69,7 +58,7 @@ function App() {
             <h1 className="text-4xl font-bold ml-3">CoffeeSpot Finder</h1>
           </div>
           <p className="text-gray-600 text-lg mb-8">
-            Find the best-rated coffee shops in your area
+            Find real coffee shops anywhere in the world
           </p>
           <SearchBar
             location={searchState.location}
@@ -77,6 +66,12 @@ function App() {
             onSearch={handleSearch}
             isLoading={searchState.isLoading}
           />
+          
+          {searchState.error && (
+            <div className="mt-4 text-red-600">
+              {searchState.error}
+            </div>
+          )}
         </div>
 
         {searchState.results.length > 0 && (
@@ -94,7 +89,7 @@ function App() {
           </div>
         )}
 
-        {searchState.location && !searchState.isLoading && searchState.results.length === 0 && (
+        {searchState.location && !searchState.isLoading && searchState.results.length === 0 && !searchState.error && (
           <div className="text-center text-gray-600 mt-8">
             No coffee shops found in this area. Try another location.
           </div>

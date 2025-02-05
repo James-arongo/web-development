@@ -15,8 +15,8 @@ export function SearchBar({ location, onLocationChange, onSearch, isLoading }: S
   };
 
   return (
-    <form onSubmit={handleSubmit} className="w-full max-w-3xl">
-      <div className="relative flex items-center">
+    <form onSubmit={handleSubmit} className="flex justify-center w-full">
+      <div className="relative flex items-center w-full max-w-3xl mx-auto">
         <input
           type="text"
           value={location}
@@ -29,7 +29,7 @@ export function SearchBar({ location, onLocationChange, onSearch, isLoading }: S
         <button
           type="submit"
           disabled={isLoading || !location}
-          className="ml-4 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed"
+          className="ml-4 px-6 py-3 bg-blue-600 text-white rounded-lg hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 disabled:opacity-50 disabled:cursor-not-allowed whitespace-nowrap"
         >
           {isLoading ? 'Searching...' : 'Search'}
         </button>
