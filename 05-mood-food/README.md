@@ -1,4 +1,8 @@
-
+# Installation
+1. Run npm install to install the dependencies.
+2. Run npm start to start the server.
+3. Visit http://localhost:3000 in your browser. If port 3000 is already in use, you can change the port constant to another number like 3001 or 8080 in server.js file.
+   
 ## Usage
 
 1. Select your current mood from the available options:
@@ -33,7 +37,6 @@ tips TEXT NOT NULL,
 mood TEXT NOT NULL
 );
 
-
 ## Contributing
 
 1. Fork the repository
@@ -41,7 +44,6 @@ mood TEXT NOT NULL
 3. Make your changes and commit: `git commit -m 'Add some feature'`
 4. Push to the branch: `git push origin feature-name`
 5. Submit a pull request
-
 
 ## Future Enhancements
 
