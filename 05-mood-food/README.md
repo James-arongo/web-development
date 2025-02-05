@@ -42,15 +42,6 @@ mood TEXT NOT NULL
 4. Push to the branch: `git push origin feature-name`
 5. Submit a pull request
 
-## License
-
-This project is licensed under the MIT License - see the LICENSE file for details.
-
-## Acknowledgments
-
-- Recipe data curated for different emotional states
-- UI design inspired by modern recipe applications
-- Tailwind CSS for styling
 
 ## Future Enhancements
 
